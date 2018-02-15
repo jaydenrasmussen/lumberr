@@ -1,11 +1,11 @@
 {
-  "name": "lumber",
-  "author": "",
+  "name": "lumberr",
+  "author": "Jayden Rasmussen",
   "version": "1.0.0",
   "license": "ISC",
   "scripts": {
     "start": "node index",
-    "test": "ava",
+    "test": "ava tests",
     "format": "prettier --single-quote --tab-width 4 --print-width 80 --write \"{,!(node_modules)/**/}*.js\""
   },
   "dependencies": {
