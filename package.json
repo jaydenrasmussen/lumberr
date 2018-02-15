@@ -3,6 +3,19 @@
   "author": "Jayden Rasmussen",
   "version": "1.0.0",
   "license": "ISC",
+  "homepage": "https://github.com/jaydenrasmussen/lumberr",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaydenrasmussen/lumberr"
+  },
+  "keywords": [
+    "log",
+    "file",
+    "simple"
+  ],
+  "bugs": {
+    "url": "https://github.com/jaydenrasmussen/lumberr/issues"
+  },
   "scripts": {
     "start": "node index",
     "test": "ava tests",
