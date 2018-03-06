@@ -22,8 +22,8 @@
     "format": "prettier --single-quote --tab-width 4 --print-width 80 --write \"{,!(node_modules)/**/}*.js\""
   },
   "dependencies": {
-    "chalk": "^2.3.1",
-    "moment": "^2.20.1"
+    "chalk": "^2.3.2",
+    "moment": "^2.21.0"
   },
   "devDependencies": {
     "ava": "^0.25.0"
