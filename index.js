@@ -14,7 +14,7 @@ class Log {
             this.path = args.path;
         } else {
             this.file = 'output.log';
-            this.path = `${__dirname}`;
+            this.path = `${process.cwd()}`;
         }
     }
     error(msg) {
