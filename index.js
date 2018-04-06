@@ -1,45 +1,74 @@
 'use strict';
-module.exports = args => {
-    // @ path should be the fully qualified path (including the filename)
-    if (args === undefined) {
-        return consoleOnly();
-    } else if (args.hasOwnProperty('path') && args.hasOwnProperty('console')) {
-        return both(args['path']);
-    } else if (args.hasOwnProperty('path')) {
-        return fileOnly(args['path']);
+const c = require('chalk');
+const fs = require('fs');
+
+class Log {
+    constructor() {
+        this.level = 'console';
     }
-};
-function validString(string) {
-    return typeof string === 'string' ? string : String(string);
-}
-function validBool(bool) {
-    return typeof bool === 'boolean' ? bool : !!bool;
-}
-function consoleOnly() {
-    return require('./lib/lib.console');
-}
-function fileOnly(path) {
-    return require('./lib/lib.file')(path);
-}
-function both(path) {
-    let file = require('./lib/lib.file')(path);
-    let std = require('./lib/lib.console');
-    return {
-        info: function(msg) {
-            std.info(msg);
-            file.info(msg);
-        },
-        warn: function(msg) {
-            std.warn(msg);
-            file.warn(msg);
-        },
-        error: function(msg) {
-            std.error(msg);
-            file.error(msg);
-        },
-        success: function(msg) {
-            std.success(msg);
-            file.success(msg);
+    options(args) {
+        this.level = 'file';
+        if (args) {
+            this.file = args.file;
+            this.path = args.path;
+        } else {
+            this.file = 'output.log';
+            this.path = `${__dirname}`;
         }
-    };
+    }
+    error(msg) {
+        let consoleMsg = `${c.red('[ERROR]')}    ${this.now()}  ${this.vString(msg)}`
+        let fileMsg = `[ERROR]    ${this.now()}  ${this.vString(msg)}`
+        if (this.level === 'file') {
+            this.fileOut(fileMsg);
+            return console.log(consoleMsg);
+        }
+        return console.log(consoleMsg);
+    }
+    success(msg) {
+        let consoleMsg = `${c.green('[SUCCESS]')}  ${this.now()}  ${this.vString(msg)}`
+        let fileMsg = `[SUCCESS]  ${this.now()}  ${this.vString(msg)}`
+        if (this.level === 'file') {
+            this.fileOut(fileMsg);
+            return console.log(consoleMsg);
+        }
+        return console.log(consoleMsg);
+    }
+    info(msg) {
+        let consoleMsg = `${c.blue('[INFO]')}     ${this.now()}  ${this.vString(msg)}`
+        let fileMsg = `[INFO]     ${this.now()}  ${this.vString(msg)}`
+        if (this.level === 'file') {
+            this.fileOut(fileMsg);
+            return console.log(consoleMsg);
+        }
+        return console.log(consoleMsg);
+    }
+    warn(msg) {
+        let consoleMsg = `${c.yellow('[WARN]')}     ${this.now()}  ${this.vString(msg)}`
+        let fileMsg = `[WARN]     ${this.now()}  ${this.vString(msg)}`
+        if (this.level === 'file') {
+            this.fileOut(fileMsg);
+            return console.log(consoleMsg);
+        }
+        return console.log(consoleMsg);
+    }
+    vString(string) {
+        return string && typeof string === 'string' ? string : String(string);
+    }
+    now() {
+        let [date, time] = new Date()
+            .toLocaleString('en-US', { hour12: false })
+            .split(', ');
+        let [month, day, year] = date.split("/");
+        (month < 10) ? month = `0${month}` : null;
+        (day < 10) ? day = `0${day}` : null;
+        return `${year}/${month}/${day} ${time}`;
+    }
+    fileOut(msg) {
+        let s = fs.createWriteStream(path.join(this.path, this.file), { flags: 'a' });
+        s.write(`${msg}\n`);
+        s.end();
+    }
 }
+
+module.exports = new Log();

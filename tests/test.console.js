@@ -1,6 +1,7 @@
 'use strict';
 const test = require('ava');
-const l = require('../lib/lib.console');
+const l = require('../');
+test('library imports with level of console', t => t.is(l.level, 'console'));
 test('error prints, no matter the type', t => {
     l.error('string');
     l.error({ prop1: 'object' });
