@@ -1,6 +1,7 @@
 'use strict';
 const c = require('chalk');
 const fs = require('fs');
+const path = require('path');
 
 class Log {
     constructor() {
