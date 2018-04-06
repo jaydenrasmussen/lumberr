@@ -12,18 +12,15 @@ A simple way to log, no verbosity settings, no fluff. Just logs. Lots of them.
 ##### Logging to file and to console
 
 ```javascript
-const log = require('lumberr')({ console: true, path: './log.log' });
-```
-
-##### Logging to file only
-
-```javascript
-const log = require('lumberr')({ path: './log.log' });
+const log = require('lumberr');
+log.options({ file: 'log1.log', path: process.cwd() });
+// or
+log.options(); // defaults to the current directory, and 'output.log'
 ```
 
 ##### Logging to console only
 
 ```javascript
-const log = require('lumberr')();
+const log = require('lumberr');
 ```
 
