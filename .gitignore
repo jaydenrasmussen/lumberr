@@ -2,3 +2,4 @@ node_modules
 .editorconfig
 .clocignore
 yarn-error*
+package-*
