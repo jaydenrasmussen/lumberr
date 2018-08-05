@@ -1,4 +1,6 @@
 # lumberr
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fjaydenrasmussen%2Flumberr.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fjaydenrasmussen%2Flumberr?ref=badge_shield)
+
 
 A simple way to log, no verbosity settings, no fluff. Just logs. Lots of them.
 
@@ -24,3 +26,7 @@ log.options(); // defaults to the current directory, and 'output.log'
 const log = require('lumberr');
 ```
 
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fjaydenrasmussen%2Flumberr.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fjaydenrasmussen%2Flumberr?ref=badge_large)
